@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Donate Items</title>
+  <style>
+    :root {
+      --primary: #1E3A8A;
+      --secondary: #3B82F6;
+      --bg: #0F172A;
+      --bg-soft: #1E293B;
+      --text: #E0F2FE;
+      --accent: #60A5FA;
+      --light-primary: #93C5FD;
+      --light-secondary: #D1D9FF;
+      --light-bg: #F1F5F9;
+      --light-text: #1E293B;
+      --border-color: rgba(255,255,255,0.15);
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 30px;
+      background-image: radial-gradient(white ,lightblue,rgb(9, 9, 103));
+    }
+
+    .donation-container {
+      background-color: var(--bg-soft);
+      padding: 40px;
+      border-radius: 10px;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      border: 1px solid var(--border-color);
+    }
+
+    .donation-container h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: var(--light-primary);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: var(--light-primary);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px 15px;
+      background-color: rgba(255,255,255,0.05);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: var(--text);
+      font-size: 15px;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--accent);
+      background-color: rgba(255,255,255,0.08);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .btn-submit {
+      background-color: var(--secondary);
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--accent);
+      box-shadow: 0 2px 8px rgba(96, 165, 250, 0.3);
+    }
+
+    .note {
+      font-size: 13px;
+      color: var(--light-primary);
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="donation-container">
+    <h2>Donate Items</h2>
+    <form id="donation-form">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Your full name" required />
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required />
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number (optional)</label>
+        <input type="tel" id="phone" name="phone" placeholder="Your phone number" />
+      </div>
+      <div class="form-group">
+        <label for="item">Item Type</label>
+        <select id="item" name="item" required>
+          <option value="">-- Select an item type --</option>
+          <option value="clothes">Clothes</option>
+          <option value="books">Books</option>
+          <option value="toys">Toys</option>
+          <option value="electronics">Electronics</option>
+          <option value="furniture">Furniture</option>
+          <option value="others">Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="description">Item Description</label>
+        <textarea id="description" name="description" placeholder="Describe the item(s) you're donating" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="address">Pickup/Drop-off Address</label>
+        <textarea id="address" name="address" placeholder="Enter your address or pickup location" required></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Submit Donation</button>
+    </form>
+    <p class="note">We will contact you to arrange the pickup or drop-off of the donated item. Thank you for your generosity!</p>
+  </div>
+
+  <script>
+    const form = document.getElementById('donation-form');
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault(); // Prevent default form submission
+
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const item = document.getElementById('item').value;
+      const description = document.getElementById('description').value;
+      const address = document.getElementById('address').value;
+
+      const donationData = {
+        name,
+        email,
+        phone,
+        item,
+        description,
+        address,
+      };
+
+      try {
+        const response = await fetch('http://localhost:5000/donate', {  // Adjust the URL to match your backend
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(donationData),
+        });
+
+        const data = await response.json(); // Assuming your server sends back a JSON response
+
+        if (response.ok) {
+          alert('Thank you for your donation!');
+          form.reset(); // Reset the form
+        } else {
+          alert(data.message || 'Something went wrong, please try again.');  // Display server message
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Error in submitting your donation');
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gareebi - User Profile</title>
+    <style>
+        :root {
+            --primary: #1E3A8A;
+            --secondary: #3B82F6;
+            --bg: #0F172A;
+            --bg-soft: #1E293B;
+            --text: #E0F2FE;
+            --accent: #60A5FA;
+            --light-primary: #93C5FD;
+            --light-secondary: #D1D9FF;
+            --light-bg: #F1F5F9;
+            --light-text: #1E293B;
+            --light-accent: #3B82F6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--bg-soft);
+            position: sticky;
+            top: 0;
+            background-color: var(--bg);
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: var(--bg-soft);
+            border-radius: 8px;
+            padding: 15px;
+            min-width: 250px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: none;
+            z-index: 100;
+            margin-top: 10px;
+        }
+        
+        .dropdown-content {
+            text-align: center;
+            padding: 10px;
+        }
+        
+        .dropdown-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: var(--accent);
+            opacity: 0.7;
+        }
+        
+        .dropdown-text {
+            font-size: 14px;
+            color: var(--text);
+            opacity: 0.8;
+        }
+        
+        .profile-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 30px 0;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--bg);
+        }
+        
+        .user-details h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .trust-score {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .trust-badge {
+            background-color: var(--primary);
+            color: var(--light-secondary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            color: var(--text);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .sidebar {
+            background-color: var(--bg-soft);
+            border-radius: 10px;
+            padding: 20px;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 15px;
+        }
+        
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text);
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: var(--primary);
+            color: var(--light-secondary);
+        }
+        
+        .sidebar-menu i {
+            font-size: 18px;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .section {
+            scroll-margin-top: 120px;
+        }
+        
+        .card {
+            background-color: var(--bg-soft);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .see-all {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .stat-card {
+            background-color: var(--bg);
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .stat-value {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--accent);
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: var(--text);
+            opacity: 0.8;
+        }
+        
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .item-card {
+            background-color: var(--bg);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .item-image {
+            height: 150px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--light-text);
+            font-size: 14px;
+        }
+        
+        .item-details {
+            padding: 15px;
+        }
+        
+        .item-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .item-status {
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .status-active {
+            background-color: rgba(96, 165, 250, 0.2);
+            color: var(--accent);
+        }
+        
+        .status-completed {
+            background-color: rgba(147, 197, 253, 0.2);
+            color: var(--light-primary);
+        }
+        
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(224, 242, 254, 0.1);
+        }
+        
+        .transaction-item:last-child {
+            border-bottom: none;
+        }
+        
+        .transaction-details {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .transaction-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .transaction-date {
+            font-size: 12px;
+            color: var(--text);
+            opacity: 0.7;
+        }
+        
+        .transaction-amount {
+            font-weight: 600;
+        }
+        
+        .positive {
+            color: #10B981;
+        }
+        
+        .negative {
+            color: #EF4444;
+        }
+        
+        .progress-container {
+            width: 100%;
+            background-color: var(--bg);
+            border-radius: 10px;
+            height: 10px;
+            margin-top: 15px;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            border-radius: 10px;
+            background-color: var(--accent);
+        }
+        
+        .personal-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .detail-item {
+            margin-bottom: 15px;
+        }
+        
+        .detail-label {
+            font-size: 12px;
+            color: var(--text);
+            opacity: 0.7;
+            margin-bottom: 5px;
+        }
+        
+        .detail-value {
+            font-weight: 500;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid, .items-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .sidebar {
+                position: static;
+                margin-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .stats-grid, .items-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .personal-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            
+            .actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Gareebi</div>
+            <div class="nav-links">
+                <a href="item-page.html">Browse</a>
+                <div class="nav-item">
+                    <a href="#" id="messages-link">Messages</a>
+                    <div class="dropdown" id="messages-dropdown">
+                        <div class="dropdown-content">
+                            <div class="dropdown-icon">
+                                <i class="far fa-envelope"></i>
+                            </div>
+                            <div class="dropdown-text">
+                                No new messages
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-item">
+                    <a href="#" id="notifications-link">Notifications</a>
+                    <div class="dropdown" id="notifications-dropdown">
+                        <div class="dropdown-content">
+                            <div class="dropdown-icon">
+                                <i class="far fa-bell"></i>
+                            </div>
+                            <div class="dropdown-text">
+                                No new notifications
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="active">Profile</a>
+            </div>
+        </header>
+        
+        <div class="profile-header">
+            <div class="user-info">
+                <div class="avatar">HV</div>
+                <div class="user-details">
+                    <h1>Hridaya Vashishtha</h1>
+                    <div class="trust-score">
+                        <div class="trust-badge">
+                            <i class="fas fa-shield-alt"></i> Trust Score: 4.8/5
+                        </div>
+                        <span>Member since June 2024</span>
+                    </div>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="btn btn-outline">Edit Profile</button>
+                <button class="btn btn-primary">+ List a New Item</button>
+            </div>
+        </div>
+        
+        <div class="dashboard-grid">
+            <div class="sidebar">
+                <ul class="sidebar-menu">
+                    <li><a href="#profile-overview" class="sidebar-link active"><i class="fas fa-user"></i> Profile Overview</a></li>
+                    <li><a href="#my-listings" class="sidebar-link"><i class="fas fa-hand-holding"></i> My Listings</a></li>
+                    <li><a href="#my-rentals" class="sidebar-link"><i class="fas fa-shopping-bag"></i> My Rentals</a></li>
+                    <li><a href="#transactions" class="sidebar-link"><i class="fas fa-money-bill-wave"></i> Transactions</a></li>
+                    <li><a href="#ratings-reviews" class="sidebar-link"><i class="fas fa-star"></i> Ratings & Reviews</a></li>
+                    <li><a href="#settings" class="sidebar-link"><i class="fas fa-cog"></i> Settings</a></li>
+                    <li><a href="#help-support" class="sidebar-link"><i class="fas fa-question-circle"></i> Help & Support</a></li>
+                    <li><a href="#logout" class="sidebar-link"><i class="fas fa-sign-out-alt"></i> Log Out</a></li>
+                </ul>
+            </div>
+            
+            <div class="main-content">
+                <div id="profile-overview" class="section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Activity Stats</h2>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <div class="stat-value">12</div>
+                                <div class="stat-label">Items Listed</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">8</div>
+                                <div class="stat-label">Items Borrowed</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value">$342</div>
+                                <div class="stat-label">Total Earnings</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Trust Score</h2>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">4.8</div>
+                            <div class="stat-label">Based on 27 transactions</div>
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: 96%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="my-listings" class="section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Currently Lending</h2>
+                            <a href="#" class="see-all">See All</a>
+                        </div>
+                        <div class="items-grid">
+                            <div class="item-card">
+                                <div class="item-image">
+                                    <img src="71ifxUAlKoL._SL1500_.jpg" alt="Power Drill" width="300" height="150">
+                                </div>
+                                <div class="item-details">
+                                    <div class="item-title">Power Drill</div>
+                                    <span class="item-status status-active">Active Rental</span>
+                                    <div>Rented by Shreyas S.</div>
+                                    <div>Return due: Apr 25, 2025</div>
+                                </div>
+                            </div>
+                            <div class="item-card">
+                                <div class="item-image">
+                                    <img src="TENT-C-CA4-99_401f2563-355c-41b1-9dbb-e4a77c400401_1600x.webp" alt="Camping Tent" width="300" height="150">
+                                </div>
+                                <div class="item-details">
+                                    <div class="item-title">Camping Tent</div>
+                                    <span class="item-status status-active">Active Rental</span>
+                                    <div>Rented by Vansh B.</div>
+                                    <div>Return due: Apr 30, 2025</div>
+                                </div>
+                            </div>
+                            <div class="item-card">
+                                <div class="item-image">
+                                    <img src="JBL_Partybox_Encore_Hero_2xMics_1605x1605px.png" alt="Party Speakers" width="300" height="150">
+                                </div>
+                                <div class="item-details">
+                                    <div class="item-title">Party Speakers</div>
+                                    <span class="item-status status-active">Active Rental</span>
+                                    <div>Rented by Dhruv S.</div>
+                                    <div>Return due: Apr 22, 2025</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="my-rentals" class="section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Currently Borrowing</h2>
+                            <a href="#" class="see-all">See All</a>
+                        </div>
+                        <div class="items-grid">
+                            <div class="item-card">
+                                <div class="item-image">
+                                    <img src="DSC03315web.jpg" alt="Bike Rack" width="300" height="150">
+                                </div>
+                                <div class="item-details">
+                                    <div class="item-title">Bike Rack</div>
+                                    <span class="item-status status-active">Active Rental</span>
+                                    <div>Borrowed from Arushi T.</div>
+                                    <div>Return due: Apr 28, 2025</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="transactions" class="section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Recent Transactions</h2>
+                            <a href="#" class="see-all">See All</a>
+                        </div>
+                        <div class="transaction-list">
+                            <div class="transaction-item">
+                                <div class="transaction-details">
+                                    <div class="transaction-title">Lawn Mower Rental Fee</div>
+                                    <div class="transaction-date">Apr 18, 2025</div>
+                                </div>
+                                <div class="transaction-amount positive">+$45.00</div>
+                            </div>
+                            <div class="transaction-item">
+                                <div class="transaction-details">
+                                    <div class="transaction-title">Bike Rack Rental</div>
+                                    <div class="transaction-date">Apr 15, 2025</div>
+                                </div>
+                                <div class="transaction-amount negative">-$25.00</div>
+                            </div>
+                            <div class="transaction-item">
+                                <div class="transaction-details">
+                                    <div class="transaction-title">Security Deposit Return</div>
+                                    <div class="transaction-date">Apr 12, 2025</div>
+                                </div>
+                                <div class="transaction-amount positive">+$100.00</div>
+                            </div>
+                            <div class="transaction-item">
+                                <div class="transaction-details">
+                                    <div class="transaction-title">Pressure Washer Rental Fee</div>
+                                    <div class="transaction-date">Apr 10, 2025</div>
+                                </div>
+                                <div class="transaction-amount positive">+$35.00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="ratings-reviews" class="section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Ratings & Reviews</h2>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value">4.8 <i class="fas fa-star" style="color: #FFD700; font-size: 24px;"></i></div>
+                            <div class="stat-label">Average rating from 27 reviews</div>
+                            <div class="progress-container">
+                                <div class="progress-bar" style="width: 96%;"></div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 20px; text-align: center; color: var(--text); opacity: 0.7;">
+                            No recent reviews to display
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="settings" class="section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Personal Details</h2>
+                            <button class="btn btn-outline">Edit</button>
+                        </div>
+                        <div class="personal-details">
+                            <div class="detail-item">
+                                <div class="detail-label">Full Name</div>
+                                <div class="detail-value">Hridaya Vashishtha</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Email Address</div>
+                                <div class="detail-value">vashishthahridaya@gmail.com</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Phone Number</div>
+                                <div class="detail-value">+91 1234567890</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Location</div>
+                                <div class="detail-value">Mumbai, India</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">ID Verification</div>
+                                <div class="detail-value"><i class="fas fa-check-circle" style="color: #10B981;"></i> Verified</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="detail-label">Payment Method</div>
+                                <div class="detail-value"><i class="fab fa-cc-visa"></i> •••• 4567</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="help-support" class="section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Help & Support</h2>
+                        </div>
+                        <div style="padding: 20px;">
+                            <h3 style="margin-bottom: 15px;">Need assistance?</h3>
+                            <p style="margin-bottom: 20px;">Our support team is ready to help with any questions or issues you may have.</p>
+                            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                                <button class="btn btn-primary"><i class="fas fa-comment-alt"></i> Contact Support</button>
+                                <button class="btn btn-outline"><i class="fas fa-book"></i> FAQ</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="logout" class="section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Logout</h2>
+                        </div>
+                        <div style="padding: 20px; text-align: center;">
+                            <p style="margin-bottom: 20px;">Are you sure you want to log out from ShareSpace?</p>
+                            <a href="index.html"><button class="btn btn-primary">Confirm Logout</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar navigation scrolling functionality
+        const sidebarLinks = document.querySelectorAll('.sidebar-link');
+        
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                sidebarLinks.forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Get the target section id
+                const targetId = this.getAttribute('href');
+                
+                // Scroll to the target section
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Dropdown functionality for Messages and Notifications
+        const messagesLink = document.getElementById('messages-link');
+        const notificationsLink = document.getElementById('notifications-link');
+        const messagesDropdown = document.getElementById('messages-dropdown');
+        const notificationsDropdown = document.getElementById('notifications-dropdown');
+        
+        // Function to toggle dropdown visibility
+        function toggleDropdown(dropdown) {
+            // Close all other dropdowns
+            [messagesDropdown, notificationsDropdown].forEach(d => {
+                if (d !== dropdown) {
+                    d.style.display = 'none';
+                }
+            });
+            
+            // Toggle the current dropdown
+            if (dropdown.style.display === 'block') {
+                dropdown.style.display = 'none';
+            } else {
+                dropdown.style.display = 'block';
+            }
+        }
+        
+        // Event listeners for dropdown toggles
+        messagesLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleDropdown(messagesDropdown);
+        });
+        
+        notificationsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleDropdown(notificationsDropdown);
+        });
+        
+        // Close dropdowns when clicking elsewhere
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('#messages-link') && !e.target.closest('#messages-dropdown') &&
+                !e.target.closest('#notifications-link') && !e.target.closest('#notifications-dropdown')) {
+                messagesDropdown.style.display = 'none';
+                notificationsDropdown.style.display = 'none';
+            }
+        });
+        
+        // Function to set active sidebar link based on scroll position
+        function setActiveOnScroll() {
+            const sections = document.querySelectorAll('.section');
+            const scrollPosition = window.scrollY + 150; // Adding offset for better UX
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    // Remove active class from all links
+                    sidebarLinks.forEach(link => link.classList.remove('active'));
+                    
+                    // Add active class to corresponding link
+                    document.querySelector(.sidebar-link[href="#${sectionId}"]).classList.add('active');
+                }
+            });
+        }
+        
+        // Update active sidebar link on scroll
+        window.addEventListener('scroll', setActiveOnScroll);
+    </script>
+</body>
+</html>

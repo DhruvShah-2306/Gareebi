@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Policy - Gareebi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --blue1: #0077b6;
+      --blue2: #023e8a;
+      --blue3: #0096c7;
+      --blue4: #caf0f8;
+      --light-bg: #f5faff;
+      --dark-bg: #0a1128;
+      --light-text: #000;
+      --dark-text: #fff;
+    }
+
+   
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--light-text);
+      transition: all 0.3s ease;
+      background-image: radial-gradient(white ,lightblue,rgb(9, 9, 103));
+    }
+
+    .dark-mode {
+      background-color: var(--dark-bg);
+      color: var(--dark-text);
+    }
+
+    header {
+      background-color: var(--blue2);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .toggle-btn {
+      background-color: var(--blue3);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      color: white;
+      font-weight: 600;
+    }
+
+    .policy-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0, 119, 182, 0.2);
+      border: 2px solid var(--blue3);
+    }
+
+    .dark-mode .policy-container {
+      background-color: #1c1c2b;
+      border-color: var(--blue1);
+    }
+
+    h2 {
+      color: var(--blue2);
+      text-align: center;
+    }
+
+    .dark-mode h2 {
+      color: var(--blue4);
+    }
+
+    h3 {
+      color: var(--blue1);
+      margin-top: 1.5rem;
+    }
+
+    .dark-mode h3 {
+      color: var(--blue4);
+    }
+
+    p {
+      line-height: 1.6;
+      margin: 0.5rem 0 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Gareebi Policies</h1>
+    <button class="toggle-btn" onclick="toggleMode()">Toggle Mode</button>
+  </header>
+
+  <div class="policy-container">
+    <h2>Terms & Conditions</h2>
+
+    <h3>1. Rental Eligibility</h3>
+    <p>Users must be 18+ with valid identification to rent or list an item. Verification may be required before approval.</p>
+
+    <h3>2. Item Condition</h3>
+    <p>All items must be in working condition and accurately described. Any defects must be clearly mentioned by the owner.</p>
+
+    <h3>3. Rental Duration & Pricing</h3>
+    <p>Prices are set by the owner and may vary. Rental periods are agreed upon before checkout. Late returns may incur penalties.</p>
+
+    <h3>4. Return Policy</h3>
+    <p>Items must be returned in the same condition. Damages will be evaluated and may be charged to the renter accordingly.</p>
+
+    <h3>5. Cancellations & Refunds</h3>
+    <p>Refunds are subject to the owner's policy. If a listing is canceled by the owner, a full refund will be processed within 3–5 business days.</p>
+
+    <h3>6. Privacy Policy</h3>
+    <p>We respect your privacy. Your personal information is never shared with third parties except as required to process orders or comply with the law.</p>
+
+    <h3>7. Contact</h3>
+    <p>For any disputes, queries, or complaints, reach out to us at <strong>support@gareebi.com</strong>. We’ll get back within 24 hours.</p>
+  </div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+[
+  {
+    "name": "JACK",
+    "email": "dhruv.shah23@spit.ac.in",
+    "phone": "1234567890",
+    "item": "books",
+    "description": "hello",
+    "address": "budusiu"
+  },
+  {
+    "name": "HRIDAYA",
+    "email": "HELLOWORLD@gmail.com",
+    "phone": "8591137827",
+    "item": "electronics",
+    "description": "bye",
+    "address": "test"
+  },
+  {
+    "name": "DHRUV",
+    "email": "gog@gmail.com",
+    "phone": "9876543210",
+    "item": "clothes",
+    "description": "yuhu",
+    "address": "lets go"
+  },
+  {
+    "name": "JACK",
+    "email": "HELLOWORLD@gmail.com",
+    "phone": "1234567890",
+    "item": "books",
+    "description": "hello",
+    "address": "why"
+  }
+]

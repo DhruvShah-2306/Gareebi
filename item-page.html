@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rent Items</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: radial-gradient(white ,lightblue,rgb(9, 9, 103));
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .item-card {
+      background-color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+    .item-card:hover {
+      transform: scale(1.05);
+    }
+    .item-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-bottom: 2px solid #ddd;
+    }
+    .item-info {
+      padding: 15px;
+    }
+    .item-info h3 {
+      font-size: 1.2em;
+      margin: 0 0 10px;
+    }
+    .item-info p {
+      font-size: 0.9em;
+      color: #555;
+    }
+    .rent-btn {
+      padding: 10px 20px;
+      background-color: #910A67;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .rent-btn:hover {
+      background-color: #720455;
+    }
+  </style>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <header>
+    <div class="header-content">
+      <h1 class="title"><span>ShareNest</span></h1>
+      <span class="List">Listed Items for Renting </span>
+     <button class="l"> <a href="listitem.html">List Item</a></button>
+        <a href="donation.html"><button class="m">Donate</a></button>
+        <button class="t"> <a href="policy.html">Policy</a></button>
+        <a href="profile.html"><button><img src="stylish-default-user-profile-photo-avatar-vector-illustration_664995-353.avif" alt="profile" height="50px" width="50px"></a></button>
+        <button class="t"> <a href="policy.html">Policy</a></button>
+      
+    </header>
+
+  <div class="container">
+    <!-- Academic Books -->
+    <div class="item-card">
+      <img src="https://media.istockphoto.com/id/505865064/photo/high-books-stack-open-book-isolated-white-background-colorful-covers.webp?a=1&b=1&s=612x612&w=0&k=20&c=uun0-q0H8iuDGsv8pG7e9KanOQtbjGFnEvni6-bT66E=" alt="Textbooks" class="item-image" />
+      <div class="item-info">
+        <h3>Textbooks</h3>
+        <p>Academic books for various courses, including engineering, medicine, law, etc.</p>
+        <p><strong>Price: $10/day</strong></p>
+        <button class="rent-btn">Rent Now</button>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="th (1).jpeg" alt="Guides & Tutorials" class="item-image" />
+      <div class="item-info">
+        <h3>Guides & Tutorials</h3>
+        <p>Programming, design, photography, or language learning books.</p>
+        <p><strong>Price: $5/day</strong></p>
+        <button class="rent-btn">Rent Now</button>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="814e52dd-15a0-457f-902d-31c07bd40af8_3.d4e9469d94ad1b5c89e392504f0f7630.webp" alt="Cookbooks" class="item-image" />
+      <div class="item-info">
+        <h3>Cookbooks</h3>
+        <p>Different genres of cooking, from traditional to modern cuisines.</p>
+        <p><strong>Price: $8/day</strong></p>
+        <button class="rent-btn">Rent Now</button>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="81sf778Q30L.jpg" alt="Novels" class="item-image" />
+      <div class="item-info">
+        <h3>Novels</h3>
+        <p>Popular novels across genres such as fiction, mystery, romance, fantasy, and non-fiction.</p>
+        <p><strong>Price: $6/day</strong></p>
+        <button class="rent-btn">Rent Now</button>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="attachment_78895234.avif" alt="Children's Books" class="item-image" />
+      <div class="item-info">
+        <h3>Children's Books</h3>
+        <p>Picture books, educational books, and storybooks.</p>
+        <p><strong>Price: $4/day</strong></p>
+        <button class="rent-btn">Rent Now</button>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="517MT5F7NOL.jpg" alt="Self-help & Motivational" class="item-image" />
+      <div class="item-info">
+        <h3>Self-help & Motivational</h3>
+        <p>Books on personal growth, health, and finance.</p>
+        <p><strong>Price: $7/day</strong></p>
+        <button class="rent-btn">Rent Now</button>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="creative-book-art-9781800651180_hr.jpg" alt="Art Books" class="item-image" />
+      <div class="item-info">
+        <h3>Art Books</h3>
+        <p>Coffee table books, collections of famous art or photography.</p>
+        <p><strong>Price: $15/day</strong></p>
+        <button class="rent-btn">Rent Now</button>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="9781741665208.jpg" alt="Travel Books" class="item-image" />
+      <div class="item-info">
+        <h3>Travel Books</h3>
+        <p>Guidebooks for different destinations or travel memoirs.</p>
+        <p><strong>Price: $10/day</strong></p>
+        <button class="rent-btn">Rent Now</button>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="Professional-Development-Books-pin1.png" alt="Professional Development" class="item-image" />
+      <div class="item-info">
+        <h3>Professional Development</h3>
+        <p>Books related to entrepreneurship, leadership, and career growth.</p>
+        <p><strong>Price: $12/day</strong></p>
+        <button class="rent-btn">Rent Now</button>
+      </div>
+    </div>
+
+    <!-- Gadgets -->
+    <div class="item-card">
+      <img src="smartphone_PNG8528.png" alt="Smartphones & Tablets" class="item-image" />
+      <div class="item-info">
+        <h3>Smartphones & Tablets</h3>
+        <p>Latest models for short-term rentals.</p>
+        <p><strong>Price: $20/day</strong></p>
+        <button class="rent-btn">Rent Now</button>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="laptop-or-smartphone-or-tablet-pc.jpg" alt="Laptops & Chromebooks" class="item-image" />
+      <div class="item-info">
+        <h3>Laptops & Chromebooks</h3>
+        <p>High-performance or budget-friendly models.</p>
+        <p><strong>Price: $25/day</strong></p>
+        <button class="rent-btn">Rent Now</button>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="ning-shi-LXUnNULp1Tk-unsplash-min.jpg" alt="Cameras & Photography Gear" class="item-image" />
+      <div class="item-info">
+        <h3>Cameras & Photography Gear</h3>
+        <p>DSLRs, action cameras (e.g., GoPro), or mirrorless cameras.</p>
+        <p><strong>Price: $30/day</strong></p>
+        <button class="rent-btn">Rent Now</button>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="BL-DEVELOPING-ACCESSORIES-1.avif" alt="Gaming Consoles & Accessories" class="item-image" />
+      <div class="item-info">
+        <h3>Gaming Consoles & Accessories</h3>
+        <p>PlayStation, Xbox, Nintendo Switch, controllers, VR headsets.</p>
+        <p><strong>Price: $35/day</strong></p>
+        <button class="rent-btn">Rent Now</button>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="9-8.jpg" alt="Smartwatches & Fitness Trackers" class="item-image" />
+      <div class="item-info">
+        <h3>Smartwatches & Fitness Trackers</h3>
+        <p>Apple Watch, Fitbit, Garmin, etc.</p>
+        <p><strong>Price: $10/day</strong></p>
+        <button class="rent-btn">Rent Now</button>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="91GRK5dZ0EL._SL1500_.jpg" alt="Projectors & Home Theater Systems" class="item-image" />
+      <div class="item-info">
+        <h3>Projectors & Home Theater Systems</h3>
+        <p>For movies or presentations.</p>
+        <p><strong>Price: $40/day</strong></p>
+        <button class="rent-btn">Rent Now</button>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="39a2e809-e0ff-46b3-b330-2149e525b27a.d7efd32e513d757d614a552c92d06fdb.webp" alt="Drone Rentals" class="item-image" />
+      <div class="item-info">
+        <h3>Drone Rentals</h3>
+        <p>For photography, videography, or recreational use.</p>
+        <p><strong>Price: $50/day</strong></p>
+        <button class="rent-btn">Rent Now</button>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="beats_by_dr_dre_900_00183_01_studio_wireless_over_ear_headphone_1037578.jpg.crdownload" alt="Speakers & Headphones" class="item-image" />
+      <div class="item-info">
+        <h3>Speakers & Headphones</h3>
+        <p>Wireless, noise-canceling headphones, Bluetooth speakers.</p>
+        <p><strong>Price: $15/day</strong></p>
+        <button class="rent-btn">Rent Now</button>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="8bda2ff2-a877-46dc-9d44-8ebb30d53a52.56a3420e1426e5e52a335f399f81b773.webp" alt="Electric Scooters or Bikes" class="item-image" />
+      <div class="item-info">
+        <h3>Electric Scooters or Bikes</h3>
+        <p>For short-term rentals for urban transport.</p>
+        <p><strong>Price: $25/day</strong></p>
+        <button class="rent-btn">Rent Now</button>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="5980201ld.avif" alt="VR Headsets" class="item-image" />
+      <div class="item-info">
+        <h3>VR Headsets</h3>
+        <p>For gaming or professional use.</p>
+        <p><strong>Price: $30/day</strong></p>
+        <button class="rent-btn">Rent Now</button>
+      </div>
+    </div>
+
+    <div class="item-card">
+      <img src="10-best-power-banks-2.jpg" alt="Portable Power Banks" class="item-image" />
+      <div class="item-info">
+        <h3>Portable Power Banks</h3>
+        <p>For on-the-go charging.</p>
+        <p><strong>Price: $5/day</strong></p>
+        <button class="rent-btn">Rent Now</button>
+      </div>
+    </div>
+
+    <!-- Stationery -->
+    <div class="item-card">
+      <img src="790c081713cd4f9d9b87aadbb8f8bdab.jpg" alt="Notebooks & Journals" class="item-image" />
+      <div class="item-info">
+        <h3>Notebooks & Journals</h3>
+        <p>Different styles like planners, bullet journals, or professional notebooks.</p>
+        <p><strong>Price: $3/day</strong></p>
+        <button class="rent-btn">Rent Now</button>
+      </div>
+    </div>
+
+    <!-- Add more items if needed -->
+
+  </div>
+
+</body>
+</html>

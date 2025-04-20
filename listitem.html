@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>List Your Item - Gareebi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --blue1: #0077b6;
+      --blue2: #023e8a;
+      --blue3: #0096c7;
+      --blue4: #caf0f8;
+      --light-bg: #f0f8ff;
+      --dark-bg: #0a1128;
+      --light-text: #000;
+      --dark-text: #fff;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--light-text);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      background-image: radial-gradient(white ,lightblue,rgb(9, 9, 103));
+    }
+
+    .dark-mode {
+      background-color: var(--dark-bg);
+      color: var(--dark-text);
+    }
+
+    header {
+      background-color: var(--blue2);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .toggle-btn {
+      background-color: var(--blue3);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      color: white;
+      font-weight: 600;
+    }
+
+    .form-container {
+      max-width: 600px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0, 119, 182, 0.2);
+      border: 2px solid var(--blue3);
+    }
+
+    .dark-mode .form-container {
+      background-color: #1c1c2b;
+      border-color: var(--blue1);
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--blue2);
+    }
+
+    .dark-mode h2 {
+      color: var(--blue4);
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-top: 0.3rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    .dark-mode input,
+    .dark-mode textarea {
+      background-color: #333a56;
+      color: white;
+      border: 1px solid var(--blue1);
+    }
+
+    button[type="submit"] {
+      margin-top: 1.5rem;
+      background-color: var(--blue1);
+      color: white;
+      border: none;
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      border-radius: 15px;
+      cursor: pointer;
+      display: block;
+      width: 100%;
+      font-weight: 600;
+    }
+
+    button[type="submit"]:hover {
+      background-color: var(--blue2);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>List Your Item</h1>
+    <button class="toggle-btn" onclick="toggleMode()">Toggle Mode</button>
+  </header>
+
+  <section class="form-container">
+    <h2>Share Your Product for Rent</h2>
+    <form id="listingForm">
+      <label for="itemName">Item Name</label>
+      <input type="text" id="itemName" name="itemName" placeholder="e.g. DSLR Camera" required/>
+
+      <label for="description">Description</label>
+      <textarea id="description" name="description" rows="4" placeholder="Enter item details..." required></textarea>
+
+      <label for="price">Rental Price (per day)</label>
+      <input type="number" id="price" name="price" placeholder="e.g. 500" required/>
+
+      <label for="contact">Contact Info</label>
+      <input type="text" id="contact" name="contact" placeholder="Phone or Email" required/>
+
+      <label for="image">Upload Image</label>
+      <input type="file" id="image" name="image" accept="image/*" required/>
+
+      <button type="submit">Submit Listing</button>
+    </form>
+  </section>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    document.getElementById('listingForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert("Item listed successfully!");
+      this.reset();
+    });
+  </script>
+</body>
+</html>

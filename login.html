@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login/Signup Page</title>
+  <style>
+    :root {
+      --primary: #1E3A8A;
+      --secondary: #3B82F6;
+      --bg: #0F172A;
+      --bg-soft: #1E293B;
+      --text: #E0F2FE;
+      --accent: #60A5FA;
+      --light-primary: #93C5FD;
+      --light-secondary: #D1D9FF;
+      --light-bg: #F1F5F9;
+      --light-text: #1E293B;
+      --light-accent: #3B82F6;
+      --border-color: rgba(255,255,255,0.15);
+      --border-hover: rgba(255,255,255,0.3);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      background-image: radial-gradient(white ,lightblue,rgb(9, 9, 103));
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 800px;
+      display: flex;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+    
+    .left-panel {
+      background-color: var(--primary);
+      flex: 1;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border-right: 1px solid var(--border-color);
+    }
+    
+    .left-panel::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: -100px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      opacity: 0.2;
+    }
+    
+    .left-panel::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      right: -80px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background-color: var(--secondary);
+      opacity: 0.15;
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 30px;
+      z-index: 1;
+      color: var(--light-secondary);
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--border-color);
+      display: inline-block;
+    }
+    
+    .left-content {
+      z-index: 1;
+    }
+    
+    .left-content h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: var(--light-bg);
+    }
+    
+    .left-content p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: var(--light-primary);
+    }
+    
+    .form-container {
+      flex: 1;
+      background-color: var(--bg-soft);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .tabs {
+      display: flex;
+      margin-bottom: 30px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .tab {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: none;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 0.3s, border-bottom 0.3s;
+    }
+    
+    .tab.active {
+      opacity: 1;
+      border-bottom: 2px solid var(--accent);
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--light-primary);
+      font-size: 14px;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px;
+      background-color: rgba(255,255,255,0.05);
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      color: var(--text);
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+    
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--accent);
+      background-color: rgba(255,255,255,0.08);
+      box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.2);
+    }
+    
+    .form-group input:hover {
+      border-color: var(--border-hover);
+    }
+    
+    .form-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      font-size: 14px;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-color);
+    }
+    
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+    }
+    
+    .checkbox-group input {
+      margin-right: 8px;
+    }
+    
+    .forgot-password {
+      color: var(--light-primary);
+      text-decoration: none;
+      transition: color 0.3s;
+      padding: 4px 8px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+    }
+    
+    .forgot-password:hover {
+      color: var(--accent);
+      border-color: var(--border-color);
+    }
+    
+    .btn {
+      padding: 12px 25px;
+      background-color: var(--secondary);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: 1px solid transparent;
+    }
+
+    .btn a {
+      color: #fff;
+      text-decoration: none;
+    }
+    
+    .btn:hover {
+      background-color: var(--accent);
+      box-shadow: 0 2px 8px rgba(96, 165, 250, 0.3);
+      border-color: rgba(255,255,255,0.2);
+    }
+    
+    .social-login {
+      margin-top: 30px;
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-color);
+    }
+    
+    .social-text {
+      margin-bottom: 15px;
+      font-size: 14px;
+      color: var(--light-primary);
+      position: relative;
+    }
+    
+    .social-text::before,
+    .social-text::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 30%;
+      height: 1px;
+      background-color: var(--border-color);
+    }
+    
+    .social-text::before {
+      left: 0;
+    }
+    
+    .social-text::after {
+      right: 0;
+    }
+    
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      border: 1px solid var(--border-color);
+    }
+    
+    .social-icon:hover {
+      background-color: var(--primary);
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+    
+    .social-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--light-primary);
+    }
+    
+    #login-form, #signup-form {
+      display: none;
+      padding: 20px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background-color: rgba(255,255,255,0.02);
+    }
+    
+    #login-form.active, #signup-form.active {
+      display: block;
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      
+      .left-panel {
+        padding: 30px;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+      }
+      
+      .form-container {
+        padding: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="left-panel">
+      <div class="logo">Gareebi</div>
+      <div class="left-content">
+        <h1>Welcome Back</h1>
+        <p>To keep connected with us please login with your personal information by email address and password</p>
+      </div>
+    </div>
+    <div class="form-container">
+      <div class="tabs">
+        <button class="tab active" data-tab="login">Login</button>
+        <button class="tab" data-tab="signup">Signup</button>
+      </div>
+      
+      <!-- Login Form -->
+      <form id="login-form" class="active">
+        <div class="form-group">
+          <label for="login-email">Email Address</label>
+          <input type="email" id="login-email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+        </div>
+        <div class="form-options">
+          <div class="checkbox-group">
+            <input type="checkbox" id="remember" name="remember">
+            <label for="remember">Remember me</label>
+          </div>
+          <a href="forgot-password.php" class="forgot-password">Forgot Password?</a>
+        </div>
+        <button type="submit" class="btn"><a href="item-page.html">Login</a></button>
+      </form>
+      
+      <!-- Signup Form -->
+      <form id="signup-form">
+        <div class="form-group">
+          <label for="signup-email">Email Address</label>
+          <input type="email" id="signup-email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="form-group">
+          <label for="signup-password">Password</label>
+          <input type="password" id="signup-password" name="password" placeholder="Create a password" required>
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" id="confirm-password" name="confirm_password" placeholder="Confirm your password" required>
+        </div>
+        <div class="form-options">
+          <div class="checkbox-group">
+            <input type="checkbox" id="terms" name="terms" required>
+            <label for="terms">I agree to the Terms & Conditions</label>
+          </div>
+        </div>
+        <button type="submit" class="btn">Sign Up</button>
+      </form>
+      
+      <div class="social-login">
+        <div class="social-text">Or continue with</div>
+        <div class="social-icons">
+          <a href="#" class="social-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96C18.34 21.21 22 17.06 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M22.56 12.25C22.56 11.47 22.49 10.72 22.36 10H12V14.26H17.92C17.66 15.63 16.88 16.79 15.71 17.57V20.34H19.28C21.36 18.42 22.56 15.6 22.56 12.25Z"/>
+              <path d="M12 23C14.96 23 17.46 22.01 19.28 20.34L15.71 17.57C14.74 18.22 13.48 18.58 12 18.58C9.06 18.58 6.62 16.61 5.74 13.97H2.05V16.83C3.87 20.53 7.64 23 12 23Z"/>
+              <path d="M5.74 13.97C5.5 13.31 5.37 12.61 5.37 11.88C5.37 11.15 5.5 10.45 5.74 9.79V6.93H2.05C1.38 8.14 1 9.48 1 10.88C1 12.28 1.38 13.62 2.05 14.83L5.74 13.97Z"/>
+              <path d="M12 5.18C13.62 5.18 15.08 5.76 16.21 6.86L19.35 3.72C17.46 1.94 14.96 0.95 12 0.95C7.64 0.95 3.87 3.42 2.05 7.12L5.74 9.98C6.62 7.34 9.06 5.18 12 5.18Z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M19.7 8.83L19.71 8.8L19.72 8.75C19.73 8.71 19.74 8.66 19.75 8.6C19.76 8.54 19.77 8.46 19.77 8.35C19.77 8.3 19.77 8.25 19.76 8.2C19.75 8.15 19.74 8.11 19.73 8.06C19.71 8 19.68 7.93 19.65 7.87C19.61 7.8 19.57 7.75 19.52 7.69C19.46 7.64 19.4 7.6 19.33 7.57C19.26 7.53 19.19 7.51 19.11 7.5C19.04 7.49 18.97 7.5 18.91 7.51C18.84 7.53 18.77 7.55 18.71 7.59C18.64 7.63 18.59 7.67 18.54 7.73C18.48 7.78 18.44 7.84 18.41 7.91C18.38 7.97 18.35 8.04 18.34 8.12C18.32 8.19 18.32 8.26 18.33 8.33C18.33 8.4 18.35 8.47 18.38 8.54C18.4 8.61 18.44 8.67 18.48 8.73C18.53 8.79 18.58 8.84 18.65 8.87C18.71 8.91 18.78 8.93 18.85 8.94C18.92 8.95 19 8.95 19.07 8.94C19.15 8.92 19.22 8.9 19.28 8.86C19.35 8.83 19.41 8.78 19.46 8.73C19.52 8.67 19.56 8.61 19.59 8.54C19.61 8.5 19.63 8.46 19.64 8.41C19.65 8.37 19.65 8.33 19.66 8.29C19.66 8.29 19.66 8.29 19.66 8.29C19.66 8.29 19.66 8.29 19.66 8.29C19.66 8.29 19.66 8.29 19.66 8.28C19.66 8.28 19.66 8.28 19.67 8.27C19.67 8.26 19.67 8.26 19.68 8.25C19.68 8.24 19.69 8.23 19.7 8.22C19.7 8.21 19.71 8.19 19.72 8.18L19.7 8.83Z"/>
+              <path d="M11.97 0.81C5.53 0.81 0.09 5.38 0.09 11C0.09 12.87 0.54 14.68 1.37 16.27L0.09 20.49L5.35 19.54C6.9 20.23 8.63 20.61 10.41 20.61H10.41C16.85 20.61 21.72 16.04 21.72 10.42C21.72 7.71 20.54 5.13 18.44 3.21C16.35 1.29 13.57 0.81 11.97 0.81V0.81ZM15.43 14.34C15.19 14.96 14.09 15.51 13.39 15.65C12.83 15.76 12.08 15.85 9.69 14.89C6.76 13.73 4.9 11.04 4.76 10.87C4.62 10.7 3.62 9.56 3.62 8.38C3.62 7.2 4.35 6.69 4.62 6.42C4.89 6.15 5.22 6.06 5.42 6.06C5.63 6.06 5.83 6.06 6 6.06C6.2 6.06 6.46 6.06 6.69 6.56C6.96 7.15 7.66 8.33 7.73 8.44C7.8 8.55 7.86 8.69 7.76 8.86C7.66 9.03 7.59 9.13 7.46 9.27C7.32 9.41 7.19 9.56 7.06 9.67C6.92 9.81 6.76 9.95 6.92 10.22C7.09 10.48 7.66 11.25 8.52 11.87C9.65 12.65 10.48 12.9 10.81 13.03C11.14 13.16 11.31 13.13 11.48 12.96C11.65 12.79 12.18 12.26 12.38 11.99C12.58 11.73 12.78 11.76 13.05 11.86C13.32 11.96 14.79 12.53 15.09 12.66C15.39 12.79 15.59 12.86 15.66 12.96C15.73 13.06 15.66 13.65 15.43 14.34Z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Tab switching with form display
+    const tabs = document.querySelectorAll('.tab');
+    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signup-form');
+    const heading = document.querySelector('.left-content h1');
+    const paragraph = document.querySelector('.left-content p');
+
+    tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+
+    const tabType = tab.getAttribute('data-tab');
+
+    if (tabType === 'login') {
+    loginForm.classList.add('active');
+    signupForm.classList.remove('active');
+    heading.textContent = 'Welcome Back';
+    paragraph.textContent = 'To keep connected with us please login with your personal information by email address and password';
+    } else {
+    loginForm.classList.remove('active');
+    signupForm.classList.add('active');
+    heading.textContent = 'Create Account';
+    paragraph.textContent = 'Sign up with your details to get started with our platform and enjoy all of our features';
+    }
+    });
+    });
+
+    // Login form submission
+    loginForm.addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent the default form submission
+
+    // You can add validation here if needed
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+
+    // Simple validation example
+    if (email && password) {
+    // Redirect to index.html
+    window.location.href = 'index.html';
+    } else {
+    alert('Please fill in all fields');
+    }
+    });
+
+    // Signup form submission with validation
+    const signupFormEl = document.getElementById('signup-form');
+    signupFormEl.addEventListener('submit', function(e) {
+    e.preventDefault(); // Prevent the default form submission
+
+    const email = document.getElementById('signup-email').value;
+    const password = document.getElementById('signup-password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+    const terms = document.getElementById('terms').checked;
+
+    // Validate form
+    if (!email || !password || !confirmPassword) {
+    alert('Please fill in all fields');
+    return;
+    }
+
+    if (password !== confirmPassword) {
+    alert('Passwords do not match!');
+    return;
+    }
+
+    if (!terms) {
+    alert('You must agree to the Terms & Conditions');
+    return;
+    }
+
+    // If all validation passes, redirect to index.html
+    window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>

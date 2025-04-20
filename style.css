@@ -1,0 +1,189 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f5f9;
+    color: #333;
+    margin: 0;
+  }
+  
+  header {
+    background-color: #1e3a8a; /* Deep blue */
+    padding: 1rem;
+    color: white;
+    text-align: center;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .title {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .nav-buttons {
+    display: flex;
+    gap: 10px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #3b82f6; /* Sky blue */
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #2563eb; /* Medium blue */
+  }
+
+  header button{
+    font-size: 1.1rem;
+    text-decoration: none;
+  }
+
+  header button a{
+    text-decoration: none;
+  }
+  
+  .item-listing {
+    padding: 2rem;
+  }
+  
+  .item-listing h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .item-card {
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+    transition: transform 0.3s ease;
+  }
+  
+  .item-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .item-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .item-info {
+    padding: 1rem;
+    text-align: center;
+  }
+  
+  .item-info h3 {
+    margin: 1rem 0;
+    font-size: 1.3rem;
+  }
+  
+  .item-info p {
+    margin: 0.5rem 0;
+  }
+  
+  .rent-btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: #60a5fa; /* Light blue */
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .rent-btn:hover {
+    background-color: #3b82f6; /* Sky blue */
+  }
+  
+  .item-form {
+    background-color: white;
+    padding: 2rem;
+    margin-top: 3rem;
+    max-width: 600px;
+    margin: 3rem auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .item-form h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .item-form label {
+    font-size: 1rem;
+    margin-top: 1rem;
+    display: block;
+  }
+  
+  .item-form input,
+  .item-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  .item-form button {
+    margin-top: 1rem;
+    padding: 10px 20px;
+    background-color: #3b82f6; /* Sky blue */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+  }
+  
+  .item-form button:hover {
+    background-color: #2563eb; /* Medium blue */
+  }
+
+
+
+header .List{
+    font-size: 1.5rem;
+    position: absolute;
+    right: 600px;
+  }
+  
+
+  .l{
+    position: absolute;
+    right: 150px;
+  }
+  
+
+
+  .t{
+    position: absolute;
+    right: 270px;
+  }
+
+  .m{
+    position: absolute;
+    right: 390px;
+  }
